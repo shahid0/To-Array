@@ -26,25 +26,34 @@
         background-color: #000000;
         color: #b9dfdf;
         border-radius: 20px;
-        transition:0.7s;
+        transition: 0.7s;
     }
-    label:hover{
-        padding: 11px 21px;
+
+    label:hover,button:hover {
         background-color: teal;
     }
 
-    #div1 {
-        margin: 10px;
-        background-color: #fdc8d1;
+    div {
         padding: 20px;
         border-radius: 20px;
+        margin: 10px;
+    }
+
+    #div1 {
+        background-color: #fdc8d1;
     }
 
     #div2 {
-        margin: 10px;
         background-color: #9dddb1;
-        padding: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #e7abab;
+        color: #000604;
         border-radius: 20px;
+        transition: 0.7s;
     }
 </style>
 
@@ -55,9 +64,13 @@
         Select File
     </label>
     <h1>offsets</h1>
-    <div id="div1"></div>
+    <button onclick="CopyToClipboard('div1')">COPY</button>
+    <div id="div1" contenteditable="true">
+    </div>
     <h1>Edits</h1>
-    <div id="div2"></div>
+    <button onclick="CopyToClipboard('div2')">COPY</button>
+    <div id="div2" contenteditable="true">
+    </div>
 
     <script>
         let splitTxt = []
@@ -95,8 +108,18 @@
                 }
             };
             reader.readAsText(file);
-        };
 
+
+        };
+        function CopyToClipboard(sel) {
+            var copyBoxElement = document.getElementById(sel);
+            copyBoxElement.contenteditable = true;
+            copyBoxElement.focus();
+            document.execCommand('selectAll');
+            document.execCommand("copy");
+            copyBoxElement.contenteditable = false;
+            alert("Text has been copied")
+        }
 
     </script>
 </body>
