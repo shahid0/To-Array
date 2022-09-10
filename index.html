@@ -80,7 +80,7 @@
                 d = parseInt(d, 10)
             return d;
         }
-
+        let key = 752823
         let div1 = document.getElementById('div1')
         let div2 = document.getElementById('div2')
         document.getElementById('file').onchange = function () {
@@ -94,14 +94,14 @@
                 for (var line = 0; line < lines.length; line++) {
                     let offsets = document.createElement("div");
                     splitTxt = lines[line].split("|");
-                    let offset = document.createTextNode(parseInt("0x" + splitTxt[splitTxt.length - 1]) + `${line === lines.length - 1 ? " " : ","}`)
+                    let offset = document.createTextNode(parseInt("0x" + splitTxt[splitTxt.length - 1]) - key + `${line === lines.length - 1 ? " " : ","}`)
                     offsets.appendChild(offset)
                     div1.appendChild(offsets);
                 }
                 for (var line = 0; line < lines.length; line++) {
                     let edits = document.createElement("div");
                     splitTxt = lines[line].split("|");
-                    let edit = document.createTextNode(hexToInt(parseInt("0x" + splitTxt[3], 16)) + `${line === lines.length - 1 ? " " : ","}`)
+                    let edit = document.createTextNode(hexToInt(parseInt("0x" + splitTxt[3], 16)) - key + `${line === lines.length - 1 ? " " : ","}`)
                     edits.appendChild(edit)
                     div2.appendChild(edits);
                 }
